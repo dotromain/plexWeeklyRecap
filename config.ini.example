@@ -1,0 +1,17 @@
+[Default]
+
+
+[Plex]
+ServerIP = ""
+ServerPort = ""
+Token = ""
+ServerID = ""
+
+[Mail]
+Recipients = "" #Comma separated values
+Sender = ""
+Subject = "Plex Weekly Recap - What's new ?"
+SmtpServer = ""
+SmtpPort = ""
+Login = ""
+Password = ""

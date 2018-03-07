@@ -1,0 +1,334 @@
+<!-- This template is bad and ugly, be careful ! Especially on mobile view. Rewrite in progress, you know... -->
+<!DOCTYPE html>{{ the }}
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+    <!-- CSS Reset : BEGIN -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+            color: #555555;
+        }
+        a {
+            color: #555555;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        *[x-apple-data-detectors],  /* iOS */
+        .x-gmail-data-detectors,    /* Gmail */
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+           display: none !important;
+           opacity: 0.01 !important;
+       }
+       /* If the above doesn't work, add a .g-img class to any image in question. */
+       img.g-img + div {
+           display: none !important;
+       }
+
+       /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit (@ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+	    @media screen and (max-width: 480px) {
+	        /* What it does: Forces Gmail app to display email full width */
+	        u ~ div .email-container {
+		        min-width: 100vw;
+		        width: 100% !important;
+	        }
+		}
+
+    </style>
+    <!-- CSS Reset : END -->
+
+    <!-- Progressive Enhancements : BEGIN -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 600px) {
+
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+
+            /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            /* What it does: Forces table cells into full-width rows. */
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            /* And center justify these ones. */
+            .stack-column-center {
+                text-align: center !important;
+            }
+
+            /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+
+            /* What it does: Adjust typography on small screens to improve readability */
+            .email-container p {
+                font-size: 17px !important;
+            }
+        }
+
+    </style>
+    <!-- Progressive Enhancements : END -->
+
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+</head>
+<body width="100%" bgcolor="#222222" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #222222; text-align: left;">
+
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+            What can we watch this week ? {% for i in movieList %}- {{ i['title'] }} -{% endfor %}
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+
+        <!-- Email Header : BEGIN -->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="900" style="margin: auto;" class="email-container">
+            <tr>
+                <td style="padding: 20px 0; text-align: center">
+                    <img src="http://oi65.tinypic.com/2h8dbut.jpg" width="200" height="50" alt="alt_text" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
+                </td>
+            </tr>
+        </table>
+        <!-- Email Header : END -->
+
+        <!-- Email Body : BEGIN -->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="900" style="margin: auto;" class="email-container">
+
+            <!-- Hero Image, Flush : BEGIN -->
+            <tr>
+                <td bgcolor="#ffffff" align="center">
+                    <img src="https://media.giphy.com/media/3o7bu3oKnrXTK94dAA/giphy.gif" width="900" height="" alt="alt_text" border="0" align="center" style="width: 100%; max-width: 900px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+                </td>
+            </tr>
+            <!-- Hero Image, Flush : END -->
+
+            <!-- 1 Column Text + Button : BEGIN -->
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
+                    <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 125%; color: #333333; font-weight: normal;">{{ total }} Films ajoutés cette semaine.</h1>
+                </td>
+            </tr>
+            <!-- 1 Column Text + Button : END -->
+
+            <!-- Background Image with Text : BEGIN -->
+        <!-- Background Image with Text : END -->
+
+        <!-- 2 Even Columns : BEGIN -->
+        <tr>
+            <td bgcolor="#ffffff" align="center" valign="top" style="padding: 10px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+
+                    {% set count = 0 %}
+                    {% for i in movieList %}
+                    <tr>
+                        <!-- Column : BEGIN -->
+                        <td class="stack-column-center">
+
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td width="90%" align="left"><h1 style="margin-bottom: 0; margin-top: 10px;"><a href="{{ i['key'] }}">{{ i['title'] }}</a></h1></td>
+                                    <td width="10%" align="right"><h4 style="margin-bottom: 0; margin-top: 10px;">{{ i['year'] }}</h4></td>
+                                </tr>
+                            </table>
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td style="padding: 10px; text-align: center">
+                                        <img src="{{ i['thumb'] }}" width="270" height="270" alt="alt_text" border="0" class="g-img" style="height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
+                                    </td>
+                                    <td style="font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow" valign="top" align="left">
+                                        <table>
+                                            <tr>
+                                                <td valign="top" align="left">
+                                                    <tr>
+                                                        <td width="100%">
+                                                            <i>{% for p in i['Genre'] %} {{ p['tag'] }} {% endfor %}</i>
+                                                            <h2 style="margin-bottom: 0; margin-top: 10px;">Résumé:</h2><p style="margin: 0;">{{ i['summary'] }}</p>
+                                                        </td>
+                                                    </tr>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table width="100%" valign="top" align="left">
+                                            <tr>
+                                                <td width="50%" valign="top" align="left">
+                                                    <h2 style="margin-bottom: 0; margin-top: 10px;">Acteurs:</h2><p style="margin: 0;">{% for p in i['Role'] %} <a href="https://www.google.fr/search?q={{p['tag']}}"> {{ p['tag'] }}<br> {% endfor %}</p>
+                                                </td>
+                                                <td width="50%" valign="top" align="left">
+                                                    <h2 style="margin-bottom: 0; margin-top: 10px;">Réal:</h2><p style="margin: 0;">{% for p in i['Director'] %} <a href="https://www.google.fr/search?q={{p['tag']}}"> {{ p['tag'] }}<br> {% endfor %}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ i['rating'] }}/10</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+        <!-- 2 Even Columns : END -->
+        <!-- Hero Image, Flush : BEGIN -->
+        <tr>
+            <td bgcolor="#ffffff" align="center">
+                <img src="https://media.giphy.com/media/3o6Ztl7RvfwCp9mqhW/giphy.gif" width="900" height="" alt="alt_text" border="0" align="center" style="width: 100%; max-width: 900px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="g-img">
+            </td>
+        </tr>
+        <!-- Hero Image, Flush : END -->
+        <!-- Clear Spacer : BEGIN -->
+        <tr>
+            <td aria-hidden="true" height="40" style="font-size: 0; line-height: 0;">
+                &nbsp;
+            </td>
+        </tr>
+        <!-- Clear Spacer : END -->
+
+    </table>
+    <!-- Email Body : END -->
+
+
+    <!-- Full Bleed Background Section : BEGIN -->
+    <table role="presentation" bgcolor="#709f2b" cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
+        <tr>
+            <td valign="top" align="center">
+                <div style="max-width: 600px; margin: auto;" class="email-container">
+                    <!--[if mso]>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+                    <tr>
+                    <td>
+                    <![endif]-->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="padding: 40px; text-align: left; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #ffffff;">
+
+                            </td>
+                        </tr>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!-- Full Bleed Background Section : END -->
+
+    </center>
+</body>
+</html>
